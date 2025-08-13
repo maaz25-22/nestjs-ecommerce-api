@@ -29,7 +29,7 @@ A modern e-commerce API built with NestJS, TypeORM, GraphQL, Kafka, JWT, and Typ
 
 1. **Clone the repository:**
 ```bash
-git clone <repository-url>
+git clone https://github.com/Bes-js/nestjs-ecommerce-api
 cd nestjs-ecommerce-api
 ```
 
@@ -50,11 +50,11 @@ NODE_ENV=development
 PORT=3000
 
 # JWT
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_SECRET=yourSuperSecretJwtKeyChangeThisInProduction
 
 # Database
 DB_TYPE=sqlite
-DB_DATABASE=ecommerce.db
+DB_DATABASE=database.sqlite
 
 # Email Configuration
 SMTP_HOST=smtp.gmail.com
@@ -83,7 +83,7 @@ npm run start:prod
 
 ## 🗄️ Database
 
-SQLite database is automatically created. Database file: `ecommerce.db`
+SQLite database is automatically created. Database file: `database.sqlite`
 
 ## 📊 GraphQL Playground
 
