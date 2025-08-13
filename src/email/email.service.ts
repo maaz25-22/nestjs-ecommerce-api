@@ -22,28 +22,27 @@ export class EmailService {
     const verificationUrl = `${this.configService.get<string>('FRONTEND_URL') || 'http://localhost:3000'}/verify-email?token=${token}`;
 
     const mailOptions = {
-      from: this.configService.get<string>('SMTP_FROM') || 'noreply@ecommerce.com',
-      to: email,
-      subject: 'Email Doğrulama - E-Ticaret',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">Merhaba ${firstName}!</h2>
-          <p>E-Ticaret hesabınızı doğrulamak için aşağıdaki butona tıklayın:</p>
+        from: this.configService.get<string>('SMTP_FROM') || 'noreply@ecommerce.com',
+        to: email,
+        subject: 'Email Verification - E-Commerce',
+        html: `
+         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+           <h2 style="color: #333;">Hi ${firstName}!</h2>
+             <p>To verify your E-Commerce account, please click the button below:</p>
           <div style="text-align: center; margin: 30px 0;">
-            <a href="${verificationUrl}" 
-               style="background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
-              Email Adresimi Doğrula
-            </a>
-          </div>
-          <p>Veya aşağıdaki linki tarayıcınıza kopyalayın:</p>
-          <p style="word-break: break-all; color: #666;">${verificationUrl}</p>
-          <p>Bu link 24 saat geçerlidir.</p>
-          <p>Eğer bu işlemi siz yapmadıysanız, bu emaili görmezden gelebilirsiniz.</p>
-          <hr>
-          <p style="color: #666; font-size: 12px;">Bu email otomatik olarak gönderilmiştir.</p>
-        </div>
-      `,
-    };
+          <a href="${verificationUrl}" 
+           style="background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+          Verify My Email Address
+        </a>
+      </div>
+      <p>Or copy and paste the following link into your browser:</p>
+      <p style="word-break: break-all; color: #666;">${verificationUrl}</p>
+      <p>This link will be valid for 24 hours.</p>
+      <p>If you did not request this action, you can safely ignore this email.</p>
+      <hr>
+      <p style="color: #666; font-size: 12px;">This email was sent automatically.</p>
+      </div>`,
+     };
 
     try {
       await this.transporter.sendMail(mailOptions);
@@ -60,25 +59,24 @@ export class EmailService {
     const mailOptions = {
       from: this.configService.get<string>('SMTP_FROM') || 'noreply@ecommerce.com',
       to: email,
-      subject: 'Şifre Sıfırlama - E-Ticaret',
+      subject: 'Password Reset - E-Commerce',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">Merhaba ${firstName}!</h2>
-          <p>Şifrenizi sıfırlamak için aşağıdaki butona tıklayın:</p>
-          <div style="text-align: center; margin: 30px 0;">
-            <a href="${resetUrl}" 
-               style="background-color: #dc3545; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
-              Şifremi Sıfırla
-            </a>
-          </div>
-          <p>Veya aşağıdaki linki tarayıcınıza kopyalayın:</p>
-          <p style="word-break: break-all; color: #666;">${resetUrl}</p>
-          <p>Bu link 1 saat geçerlidir.</p>
-          <p>Eğer bu işlemi siz yapmadıysanız, bu emaili görmezden gelebilirsiniz.</p>
-          <hr>
-          <p style="color: #666; font-size: 12px;">Bu email otomatik olarak gönderilmiştir.</p>
-        </div>
-      `,
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #333;">Hello ${firstName}!</h2>
+        <p>To reset your password, please click the button below:</p>
+      <div style="text-align: center; margin: 30px 0;">
+      <a href="${resetUrl}" 
+         style="background-color: #dc3545; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+        Reset My Password
+      </a>
+     </div>
+     <p>Or copy and paste the following link into your browser:</p>
+     <p style="word-break: break-all; color: #666;">${resetUrl}</p>
+     <p>This link will be valid for 1 hour.</p>
+     <p>If you did not request this action, you can safely ignore this email.</p>
+     <hr>
+     <p style="color: #666; font-size: 12px;">This email was sent automatically.</p>
+    </div>`
     };
 
     try {
